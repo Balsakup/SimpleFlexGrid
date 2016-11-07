@@ -1,0 +1,58 @@
+@import "settings"
+
+@mixin col($viewport: "")
+    @for $i from 1 through $nbCols
+        .col#{$viewport}-#{$i}
+            flex: 0 0 100% * $i / $nbCols
+
+*
+    box-sizing: border-box
+
+.container
+    width: 100%
+
+.row
+    display: flex
+    flex-wrap: wrap
+
+    margin: 0 $gutter * -.5
+
+[class*="col-"]
+    padding: 0 $gutter * .5
+
+@include col()
+
+.hide-xs
+    display: none
+
+@media only screen and (min-width: $small)
+    @include col("-s")
+
+    .hide-s
+        display: none
+
+    .show-s
+        display: block
+
+@media only screen and (min-width: $medium)
+    @include col("-m")
+
+    .hide-m
+        display: none
+
+    .show-m
+        display: block
+
+@media only screen and (min-width: $large)
+    @include col("-l")
+
+    .hide-l
+        display: none
+
+    .show-l
+        display: block
+
+@media only screen and (min-width: $large)
+    .container
+        width: $container
+        margin: 0 auto
